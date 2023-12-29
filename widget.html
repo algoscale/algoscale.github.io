@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insighto.AI</title>
+    <script type="module" crossorigin src="/assets/index.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index.css" />
+    <link rel="stylesheet" crossorigin href="/assets/style.css" />
+  </head>
+  <body>
+    <div id="chat-widget-root">
+      <div
+        data-floating="true"
+        data-widget-id="018c8b8e-4bcc-7083-8494-8db604ff7041"
+        id="chat-widget"
+      ></div>
+    </div>
+    <header><h1>Insighto.AI</h1></header>
+    <main>
+      <aside>
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/widget.html">Widget</a></li>
+        </ul>
+      </aside>
+      <section class="main">
+        <h2>Widget Form</h2>
+        <p><i>Please update the widget id below</i></p>
+        <h4>Currently listening to widget id: <span id="widgetIdDisplay"></span></h4>
+        <section class="widget__form">
+          <form id="widgetForm">
+            <label for="widgetId"> Widget Id: </label>
+            <input
+              type="text"
+              name="widgetId"
+              id="widgetId"
+              required
+              placeholder="Please enter the widget id"
+            />
+            <p id="widgetErrorMessage"></p>
+            <button type="submit">Submit</button>
+          </form>
+        </section>
+      </section>
+    </main>
+    <script src="/assets/script.js"></script>
+  </body>
+</html>
