@@ -1,83 +1,14 @@
-header {
-  background-color: rgb(64, 64, 220);
-  color: white;
-  height: 10svh;
-  display: flex;
-  align-items: center;
-  padding: 0.3rem;
+body {
+  margin: 0;
+  padding: 0;
 }
-header > h1 {
-  color: white;
-  font-size: 2.5rem;
+.main__widget{
+  padding: 5px;
+}
+.main__widget  .chat__header {
+  height: 8svh;
 }
 
-main {
-  display: grid;
-  grid-template-columns: 300px auto;
-  height: 90svh;
-}
-aside {
-  background-color: lightgray;
-  padding: 1rem;
-  font-size: 1.8rem;
-}
-.main {
-  overflow-y: scroll;
-  padding: 1rem;
-  font-size: 1.3rem;
-  text-align: justify;
-}
-aside > ul {
-  list-style: none;
-  padding-left: 0;
-  display: grid;
-  gap: 1rem;
-}
-aside > ul > li {
-  font: bold;
-}
-#widgetForm > input {
-  width: 100%;
-  font-size: 1.5rem;
-  padding: 0.3rem;
-  margin-top: 0.3rem;
-}
-.widget__form{
-  display: flex;
-  align-items: center;
-  justify-content: center; 
-}
-label{
-  font-style: italic;
-  font-size: smaller;
-}
-#widgetForm{
-  max-width: 500px;
-  display: grid;
-  width: 100%;
-  margin: auto;
-  margin-top: 0.8rem;
-}
-#widgetForm > button {
-  font-size: 1.5rem;
-  background-color: rgba(25, 25, 162, 0.553);
-  color: white;
-  padding: 0.3rem;
-  border: none;
-  outline: none;
-  margin: auto;
-  cursor: pointer;
-  border-radius: 0.3rem;
-}
-#widgetErrorMessage{
-  color: red;
-  font-size: 1.2rem;
-}
-.code__wrapper{
-  margin-block: 0.8rem;
-}
-@media screen and (max-width: 720px) {
-  main {
-    grid-template-columns: auto;
-  }
+.main__widget .chat__body{
+  height: 80svh;
 }
