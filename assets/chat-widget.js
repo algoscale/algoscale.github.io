@@ -1,47 +1,33 @@
 const model = {
-  code: {
-    head: `<head>
-        <link rel="stylesheet" crossorigin href="https://cdn.insighto.ai/assets/index.js" />
-        <link rel="stylesheet" crossorigin href="https://cdn.insighto.ai/assets/style.css" />
-    </head>`,
-    body: {
-      inADiv: `<body>
-      <div id="chat-widget-root">
-        <div
-          data-widget-id="018c8b8e-4bcc-7083-8494-8db604ff7041"
-          id="chat-widget"
-        ></div>
-      </div>
-  </body>`,
-      widget: `<body>
-      <div id="chat-widget-root">
-        <div
-          data-floating="true"
-          data-widget-id="018c8b8e-4bcc-7083-8494-8db604ff7041"
-          id="chat-widget"
-        ></div>
-      </div>
-  </body>`,
-    },
-  },
-};
-const controller = {
-  getChatWidget: function () {
-    return { head: model.code.head, body: model.code.body.widget };
-  },
-  getHTMLWidget: function () {
-    return { head: model.code.head, body: model.code.body.inADiv };
-  },
-};
-
+    widget: {
+        dimension: {
+            height: "100px",
+            width: "100px",
+        },
+        show: false
+    }
+}
+const controllers = {
+    onWidgetBtnClick: function () {
+        model.widget.dimension.height = model.widget.show ? "100px" : "750px";
+        model.widget.dimension.width = model.widget.show ? "100px" : "550px";
+        model.widget.dimension.show  = true;
+        views.setDimentionsOfIframe(model.widget.dimension.height, model.widget.dimension.width);
+    }
+}
 const views = {
-  init: function () {
-    this.initCode(window.location.pathname);
-  },
-  initCode: function (type) {
-    const {head, body} = type === "/chat-widget.html" ? controller.getChatWidget() : controller.getHTMLWidget();
-    document.getElementById("head").innerText = head;
-    document.getElementById("body").innerText = body;
-  },
+    init: function () {
+        const chatWidget = document.getElementById("chatWidget");
+        chatWidget.onload = function () {
+            setTimeout(() => {
+                const button = document.getElementById("chatWidget").contentDocument.getElementById("openClose");
+                button.onclick = controllers.onWidgetBtnClick;
+            })
+        }
+    },
+    setDimentionsOfIframe: function (height, width) {
+        document.getElementById("chatWidget").style.height = height;
+        document.getElementById("chatWidget").style.width = width;
+    }
 };
-views.init();
+views.init()
