@@ -9,20 +9,23 @@ const model = {
 }
 const controllers = {
     onWidgetBtnClick: function () {
-        model.widget.dimension.height = model.widget.show ? "100px" : "750px";
+        model.widget.dimension.height = model.widget.show ? "100px" : "800px";
         model.widget.dimension.width = model.widget.show ? "100px" : "550px";
-        model.widget.dimension.show  = true;
+        model.widget.dimension.show = true;
         views.setDimentionsOfIframe(model.widget.dimension.height, model.widget.dimension.width);
     }
 }
 const views = {
     init: function () {
         const chatWidget = document.getElementById("chatWidget");
-        chatWidget.onload = function () {
+        chatWidget.onreadystatechange = function () {
+            console.log(chatWidget.contentDocument.readyState);
+        }
+        chatWidget.onload = () => {
             setTimeout(() => {
-                const button = document.getElementById("chatWidget").contentDocument.getElementById("openClose");
+                const button = chatWidget.contentWindow.document.getElementById("openClose");
                 button.onclick = controllers.onWidgetBtnClick;
-            },1000)
+            })
         }
     },
     setDimentionsOfIframe: function (height, width) {
@@ -30,4 +33,4 @@ const views = {
         document.getElementById("chatWidget").style.width = width;
     }
 };
-views.init()
+views.init();
