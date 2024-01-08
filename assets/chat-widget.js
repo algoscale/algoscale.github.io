@@ -22,7 +22,7 @@ const views = {
             setTimeout(() => {
                 const button = document.getElementById("chatWidget").contentDocument.getElementById("openClose");
                 button.onclick = controllers.onWidgetBtnClick;
-            })
+            },1000)
         }
     },
     setDimentionsOfIframe: function (height, width) {
