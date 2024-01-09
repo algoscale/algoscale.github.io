@@ -8,6 +8,9 @@ const controller = {
             views.removeWidget();
             views.changeIconOfOpenClose("https://cdn.insighto.ai/assets/bot.svg");
         } else {
+            if (!document.getElementById("chatWidget")) {
+                views.insertIframeWidget();
+            }
             views.changeIconOfOpenClose("https://cdn.insighto.ai/assets/down.svg");
             views.displayIframe();
         }
@@ -17,7 +20,6 @@ const controller = {
 
 const views = {
     init: function () {
-        this.insertIframeWidget();
         this.insertOpenCloseBtn();
     },
     createIframeWidget: function (src) {
@@ -37,8 +39,8 @@ const views = {
     createBtn: function (src) {
         const img = document.createElement("img");
         img.id = "openCloseWidget";
-        img.width = 50;
-        img.height = 50;
+        img.width = 40;
+        img.height = 40;
         img.src = src;
         img.onclick = controller.toggleIframe;
         return img;
@@ -51,7 +53,7 @@ const views = {
         const openClose = this.createBtn("https://cdn.insighto.ai/assets/bot.svg");
         document.body.append(openClose);
     },
-    changeIconOfOpenClose : function(src){
+    changeIconOfOpenClose: function (src) {
         const img = document.getElementById("openCloseWidget");
         img.src = src;
     }
