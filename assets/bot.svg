@@ -1,11 +1,15 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg fill="#3b81f6" width="139px" height="139px" viewBox="-3.2 -3.2 38.40 38.40" id="icon" xmlns="http://www.w3.org/2000/svg" stroke="#064bc1" stroke-width="0.00032">
+<svg fill="#FFFFFF" width="800px" height="800px" viewBox="-8.32 -8.32 48.64 48.64" id="icon" xmlns="http://www.w3.org/2000/svg" stroke="#FFFFFF" stroke-width="0.00032">
 
-<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+<g id="SVGRepo_bgCarrier" stroke-width="0">
 
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.128"/>
+<rect x="-8.32" y="-8.32" width="48.64" height="48.64" rx="24.32" fill="#3b81f6" strokewidth="0"/>
+
+</g>
+
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
 
 <g id="SVGRepo_iconCarrier">
 
