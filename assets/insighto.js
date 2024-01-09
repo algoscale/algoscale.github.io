@@ -37,8 +37,8 @@ const views = {
     createBtn: function (src) {
         const img = document.createElement("img");
         img.id = "openCloseWidget";
-        img.width = 40;
-        img.height = 40;
+        img.width = 50;
+        img.height = 50;
         img.src = src;
         img.onclick = controller.toggleIframe;
         return img;
