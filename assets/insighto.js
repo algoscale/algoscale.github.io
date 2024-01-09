@@ -46,7 +46,7 @@ const views = {
         return img;
     },
     insertIframeWidget: function () {
-        const widget = this.createIframeWidget("https://cdn.insighto.ai/index.html");
+        const widget = this.createIframeWidget("https://cdn.insighto.ai/bot-iframe.html");
         document.body.append(widget);
     },
     insertOpenCloseBtn: function () {
