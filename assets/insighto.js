@@ -1,21 +1,27 @@
 const model = {
-    iframeOpen: false
+    iframeOpen: false,
+    host: "https://cdn.insighto.ai",
 }
-
+const helper = {
+    getHostName(url) {
+        return model.host + url
+    }
+}
 const controller = {
     toggleIframe: function () {
         if (model.iframeOpen) {
             views.removeWidget();
-            views.changeIconOfOpenClose("https://cdn.insighto.ai/assets/bot.svg");
+            views.changeIconOfOpenClose(helper.getHostName("/assets/bot.svg"));
         } else {
             if (!document.getElementById("chatWidget")) {
                 views.insertIframeWidget();
             }
-            views.changeIconOfOpenClose("https://cdn.insighto.ai/assets/down.svg");
+            views.changeIconOfOpenClose(helper.getHostName("/assets/down.svg"));
             views.displayIframe();
         }
         model.iframeOpen = !model.iframeOpen;
-    }
+    },
+
 }
 
 const views = {
@@ -46,11 +52,11 @@ const views = {
         return img;
     },
     insertIframeWidget: function () {
-        const widget = this.createIframeWidget("https://cdn.insighto.ai/bot-iframe.html");
+        const widget = this.createIframeWidget(helper.getHostName(`/bot-iframe.html?widgetId=${widgetId}`));
         document.body.append(widget);
     },
     insertOpenCloseBtn: function () {
-        const openClose = this.createBtn("https://cdn.insighto.ai/assets/bot.svg");
+        const openClose = this.createBtn(helper.getHostName("/assets/bot.svg"));
         document.body.append(openClose);
     },
     changeIconOfOpenClose: function (src) {
