@@ -6,9 +6,9 @@ const controller = {
     toggleIframe: function () {
         if (model.iframeOpen) {
             views.removeWidget();
-            views.changeIconOfOpenClose("/assets/bot.svg");
+            views.changeIconOfOpenClose("https://cdn.insighto.ai/assets/bot.svg");
         } else {
-            views.changeIconOfOpenClose("/assets/down.svg");
+            views.changeIconOfOpenClose("https://cdn.insighto.ai/assets/down.svg");
             views.displayIframe();
         }
         model.iframeOpen = !model.iframeOpen;
@@ -44,11 +44,11 @@ const views = {
         return img;
     },
     insertIframeWidget: function () {
-        const widget = this.createIframeWidget("/index.html");
+        const widget = this.createIframeWidget("https://cdn.insighto.ai/index.html");
         document.body.append(widget);
     },
     insertOpenCloseBtn: function () {
-        const openClose = this.createBtn("/assets/bot.svg");
+        const openClose = this.createBtn("https://cdn.insighto.ai/assets/bot.svg");
         document.body.append(openClose);
     },
     changeIconOfOpenClose : function(src){
