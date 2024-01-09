@@ -1,0 +1,22 @@
+body{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#chatWidget{
+    position: fixed;
+    width: 450px;
+    height: 720px;
+    right: 1.2svw;
+    bottom: 5svh;
+    z-index: 20;
+}
+#openCloseWidget{
+    position: fixed;
+    z-index: 20;
+    right: 1svw;
+    bottom: 1svh;
+    cursor: pointer;
+}
