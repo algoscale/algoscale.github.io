@@ -32,6 +32,7 @@ const views = {
         const iframe = document.createElement("iframe");
         iframe.id = "chatWidget";
         iframe.src = src;
+        iframe.allow = "microphone"
         iframe.style.border = "none"
         iframe.style.display = "none";
         return iframe;
@@ -52,7 +53,7 @@ const views = {
         return img;
     },
     insertIframeWidget: function () {
-        const widget = this.createIframeWidget(helper.getHostName(`/bot-iframe.html?widgetId=${widgetId}`));
+        const widget = this.createIframeWidget(helper.getHostName(`/bot-iframe.html?widgetId=${insighto_ai_widget_id}`));
         document.body.append(widget);
     },
     insertOpenCloseBtn: function () {
