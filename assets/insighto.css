@@ -25,3 +25,34 @@ body {
 #openCloseWidget:hover {
   transform: scale(1.1);
 }
+
+.greetMe__banner {
+  position: fixed;
+  right: 1rem;
+  bottom: 4rem;
+  z-index: 20;
+  width: 250px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-radius: 0.5rem;
+  transition: all ease-in 300ms;
+}
+.greetMe__bannerRemove {
+  opacity: 0;
+}
+.greetMe__banner > img {
+  position: absolute;
+  right: -4px;
+  cursor: pointer;
+  top: -4px;
+  transition: all ease-in 300ms;
+}
+.greetMe__banner > img:hover {
+  transform: scale(1.1);
+}
+.greetMe__bannerMsg {
+  background-color: white;
+  border-radius: 0.5rem;
+}
+.greetMe__bannerMsg {
+  padding: 0.5rem;
+}
