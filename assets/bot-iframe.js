@@ -13,7 +13,7 @@ const view = {
   },
   setThemeForWidget: function () {
     const widget = document.getElementById("chat-widget");
-    const theme = this.getTheme();
+    const theme = this.getTheme() || "";
     console.log(theme);
     widget.dataset.theme = theme;
   },
