@@ -1,6 +1,7 @@
 const model = {
   iframeOpen: false,
-  host: "https://cdn.insighto.ai",
+  widgetTheme: null,
+  host: "",
 };
 const helper = {
   getHostName(url) {
@@ -8,7 +9,11 @@ const helper = {
   },
 };
 const controller = {
-  toggleIframe: function () {
+  async init() {
+    const response = await api.fetchWidgetTheme(insighto_ai_widget_id);
+    model.widgetTheme = response.data;
+  },
+  toggleIframe: async function () {
     if (model.iframeOpen) {
       views.removeWidget();
       views.changeIconOfOpenClose(helper.getHostName("/assets/bot.svg"));
@@ -28,7 +33,8 @@ const controller = {
 };
 
 const views = {
-  init: function () {
+  init: async function () {
+    await controller.init();
     this.insertOpenCloseBtn();
     this.insertGreet();
     if (sessionStorage.getItem("greeted")) {
@@ -123,10 +129,43 @@ const views = {
     return img;
   },
   insertIframeWidget: function () {
+    const theme = this.getThemeParams();
+    console.log(theme);
+    const base64Theme = btoa(JSON.stringify(theme));
+    console.log(base64Theme);
     const widget = this.createIframeWidget(
-      helper.getHostName(`/bot-iframe.html?widgetId=${insighto_ai_widget_id}`)
+      helper.getHostName(
+        `/bot-iframe.html?widgetId=${insighto_ai_widget_id}&theme=${base64Theme}`
+      )
     );
     document.body.append(widget);
+  },
+  getThemeParams() {
+    if (!model.widgetTheme) {
+      return {};
+    }
+    const displayName = model?.widgetTheme.display_name || "";
+    const introMessage = model?.widgetTheme.intro_message || "";
+    const userOpeningMessages = model?.widgetTheme.user_opening_messages.length
+      ? model?.widgetTheme.user_opening_messages.length
+      : [];
+    const headerColor = model?.widgetTheme.header_color || "";
+    const userMessageColor = model?.widgetTheme.user_message_color || "";
+    const botMessageColor = model?.widgetTheme.bot_message_color || "";
+    const botIconColor = model.widgetTheme.bot_icon_color || "";
+    const removeBranding = model.widgetTheme.remove_branding || false;
+    const botProfilePic = model?.widgetTheme.bot_profile_pic || "";
+    return {
+      displayName,
+      introMessage,
+      userOpeningMessages,
+      headerColor,
+      userMessageColor,
+      botMessageColor,
+      botIconColor,
+      removeBranding,
+      botProfilePic,
+    };
   },
   insertOpenCloseBtn: function () {
     const openClose = this.createBtn(helper.getHostName("/assets/bot.svg"));
@@ -138,4 +177,18 @@ const views = {
   },
 };
 
+const api = {
+  async fetchWidgetTheme(widgetId) {
+    try {
+      const response = await (
+        await fetch(
+          `https://ragify-be.azurewebsites.net/api/v1/widget/${widgetId}/parameters`
+        )
+      ).json();
+      return response;
+    } catch (error) {
+      return {};
+    }
+  },
+};
 views.init();
