@@ -78,7 +78,7 @@ const views = {
         views.initateAnimationForGreetRemove(200);
         views.initiateRemove(500);
       };
-      img.src = "/assets/close.svg";
+      img.src = helper.getHostName("/assets/close.svg");
       img.alt = "closeIcon";
       img.width = 20;
       img.height = 20;
