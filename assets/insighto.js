@@ -1,7 +1,7 @@
 const model = {
   iframeOpen: false,
   widgetTheme: null,
-  host: "",
+  host: "https://cdn.insighto.ai/",
 };
 const helper = {
   getHostName(url) {
@@ -130,9 +130,7 @@ const views = {
   },
   insertIframeWidget: function () {
     const theme = this.getThemeParams();
-    console.log(theme);
     const base64Theme = btoa(JSON.stringify(theme));
-    console.log(base64Theme);
     const widget = this.createIframeWidget(
       helper.getHostName(
         `/bot-iframe.html?widgetId=${insighto_ai_widget_id}&theme=${base64Theme}`
