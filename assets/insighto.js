@@ -1,7 +1,7 @@
 const model = {
   iframeOpen: false,
   widgetTheme: null,
-  host: "https://cdn.insighto.ai",
+  host: "",
 };
 const helper = {
   getHostName(url) {
@@ -17,6 +17,7 @@ const controller = {
     if (model.iframeOpen) {
       views.removeWidget();
       views.changeIconOfOpenClose(helper.getHostName("/assets/bot.svg"));
+      views.hideCloseWidgetBtn();
     } else {
       if (!document.getElementById("chatWidget")) {
         views.insertIframeWidget();
@@ -37,6 +38,7 @@ const views = {
     await controller.init();
     this.insertOpenCloseBtn();
     this.insertGreet();
+    this.inseretCloseWidgetBtn();
     if (sessionStorage.getItem("greeted")) {
       this.removeGreetMessage();
       return;
@@ -115,9 +117,19 @@ const views = {
   },
   removeWidget: function () {
     document.getElementById("chatWidget").style.display = "none";
+    this.hideCloseWidgetBtn();
   },
   displayIframe: function () {
+    this.decideWidthOfIframe(document.getElementById("chatWidget"));
     document.getElementById("chatWidget").style.display = "block";
+  },
+  decideWidthOfIframe: function (chatWidget) {
+    const width = document.body.clientWidth;
+    const isSmallScreen = width < 720;
+    chatWidget.className = isSmallScreen
+      ? "chat__WidgetSmall"
+      : "chat__WidgetBig";
+    if (isSmallScreen) this.showCloseWidgetBtn();
   },
   createBtn: function (src) {
     const img = document.createElement("img");
@@ -168,6 +180,29 @@ const views = {
   insertOpenCloseBtn: function () {
     const openClose = this.createBtn(helper.getHostName("/assets/bot.svg"));
     document.body.append(openClose);
+  },
+  createCloseWidgetBtn() {
+    const img = document.createElement("img");
+    img.id = "closeWidgetIcon";
+    img.src = helper.getHostName("/assets/close.svg");
+    img.width = 30;
+    img.height = 30;
+    img.onclick = controller.toggleIframe;
+    return img;
+  },
+  inseretCloseWidgetBtn() {
+    const closeBtn = this.createCloseWidgetBtn();
+    document.body.append(closeBtn);
+  },
+  showCloseWidgetBtn() {
+    const closeBtn = document.getElementById("closeWidgetIcon");
+    if (!closeBtn) return;
+    closeBtn.style.display = "block";
+  },
+  hideCloseWidgetBtn() {
+    const closeBtn = document.getElementById("closeWidgetIcon");
+    if (!closeBtn) return;
+    closeBtn.style.display = "none";
   },
   changeIconOfOpenClose: function (src) {
     const img = document.getElementById("openCloseWidget");
