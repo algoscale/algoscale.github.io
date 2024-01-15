@@ -1,7 +1,7 @@
 const model = {
   iframeOpen: false,
   widgetTheme: null,
-  host: "",
+  host: "https://cdn.insighto.ai/",
 };
 const helper = {
   getHostName(url) {
