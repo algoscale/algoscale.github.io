@@ -60,12 +60,18 @@ body {
   display: none;
   position: fixed;
   right: 10px;
+  cursor: pointer;
   top: 5px;
   z-index: 50;
+  transition: all ease-in 300ms;
+}
+#closeWidgetIcon:hover{
+  transform: scale(1.1);
 }
 .chat__WidgetBig {
-  width: 450px;
-  height: 750px;
+  width: 100%;
+  max-width: 450px;
+  height: 650px;
 }
 .chat__WidgetSmall {
   width: 100%;

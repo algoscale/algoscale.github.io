@@ -1,7 +1,7 @@
 const model = {
   iframeOpen: false,
   widgetTheme: null,
-  host: "https://cdn.insighto.ai/",
+  host: "https://cdn.insighto.ai",
 };
 const helper = {
   getHostName(url) {
@@ -184,7 +184,7 @@ const views = {
   createCloseWidgetBtn() {
     const img = document.createElement("img");
     img.id = "closeWidgetIcon";
-    img.src = helper.getHostName("/assets/close.svg");
+    img.src = helper.getHostName("/assets/close-small.svg");
     img.width = 30;
     img.height = 30;
     img.onclick = controller.toggleIframe;
