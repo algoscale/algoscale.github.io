@@ -30,6 +30,7 @@ body {
   position: fixed;
   right: 1rem;
   bottom: 4rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
   z-index: 20;
   border: 1px solid #A0AEC0;
   width: 250px;
