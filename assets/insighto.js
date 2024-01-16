@@ -65,7 +65,7 @@ const views = {
     iframe.id = "chatWidget";
     iframe.src = src;
     iframe.allow = "microphone";
-    iframe.style.border = "none";
+    iframe.style.border = "1px solid lightgray";
     iframe.style.display = "none";
     return iframe;
   },
