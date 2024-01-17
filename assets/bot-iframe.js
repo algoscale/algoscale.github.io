@@ -1,3 +1,6 @@
+const model = {
+  widgetTheme: null,
+};
 const view = {
   init: function () {
     const widgetId = this.getWidgetId();
@@ -13,8 +16,7 @@ const view = {
   },
   setThemeForWidget: function () {
     const widget = document.getElementById("chat-widget");
-    const theme = this.getTheme() || "";
-    console.log(theme);
+    const theme = this.getTheme();
     widget.dataset.theme = theme;
   },
   getTheme() {
