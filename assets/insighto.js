@@ -17,7 +17,7 @@ const api = {
             bubble_bot_icon:
               "https://freeiconshop.com/wp-content/uploads/edd/image-outline-filled.png",
             bubble_color: "lightblue",
-            bubble_text: "Aur bhai kaise ho?",
+            bubble_text: "How you doing ?",
           },
         });
       }, 500)
