@@ -12,7 +12,7 @@ const api = {
 };
 const model = {
   iframeOpen: false,
-  host: "https://cdn.insighto.ai",
+  host: "",
   botIcon: {
     bubbleBotIcon: "/assets/bot.svg",
     bubbleColor: "#3b81f6",
@@ -163,8 +163,8 @@ const views = {
     div.style.backgroundColor = botIcon.bubbleColor;
     img.id = "floatingIconBottom";
     div.id = "openCloseWidget";
-    img.width = 35;
-    img.height = 35;
+    img.width = 34;
+    img.height = 34;
     img.src = src;
     div.append(img);
     div.onclick = controller.toggleIframe;

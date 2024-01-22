@@ -18,7 +18,7 @@ body {
   z-index: 20;
   right: 1rem;
   bottom: 1rem;
-  border-radius: 42px;
+  border-radius: 34px;
   cursor: pointer;
   transition: all ease-in 300ms;
   display: flex;
