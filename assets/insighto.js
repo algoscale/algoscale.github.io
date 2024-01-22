@@ -12,7 +12,7 @@ const api = {
 };
 const model = {
   iframeOpen: false,
-  host: "",
+  host: "https://cdn.insighto.ai",
   botIcon: {
     bubbleBotIcon: "/assets/bot.svg",
     bubbleColor: "#3b81f6",
