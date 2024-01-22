@@ -9,6 +9,20 @@ const api = {
       return null;
     }
   },
+  async fakeThemeFetch() {
+    return new Promise((resolve) =>
+      setTimeout(() => {
+        resolve({
+          data: {
+            bubble_bot_icon:
+              "https://freeiconshop.com/wp-content/uploads/edd/image-outline-filled.png",
+            bubble_color: "lightblue",
+            bubble_text: "Aur bhai kaise ho?",
+          },
+        });
+      }, 500)
+    );
+  },
 };
 const model = {
   iframeOpen: false,
@@ -16,7 +30,7 @@ const model = {
   botIcon: {
     bubbleBotIcon: "/assets/bot.svg",
     bubbleColor: "#3b81f6",
-    bubbleText : "Hi! I am Insighto.ai, how can I help you?"
+    bubbleText: "Hi! I am Insighto.ai, how can I help you?",
   },
 };
 const helper = {
@@ -33,14 +47,18 @@ const controller = {
     if (data) {
       model.botIcon.bubbleBotIcon =
         data?.data.bubble_bot_icon || model.botIcon.bubbleBotIcon;
-      model.botIcon.bubbleColor = data?.data.bubble_color || model.botIcon.bubbleColor;
-      model.botIcon.bubbleText = data?.data.bubble_text || model.botIcon.bubbleText;
+      model.botIcon.bubbleColor =
+        data?.data.bubble_color || model.botIcon.bubbleColor;
+      model.botIcon.bubbleText =
+        data?.data.bubble_text || model.botIcon.bubbleText;
     }
   },
   toggleIframe: async function () {
     if (model.iframeOpen) {
       views.removeWidget();
-      views.changeIconOfOpenClose(helper.getHostName(model.botIcon.bubbleBotIcon));
+      views.changeIconOfOpenClose(
+        helper.getHostName(model.botIcon.bubbleBotIcon)
+      );
       views.hideCloseWidgetBtn();
     } else {
       if (!document.getElementById("chatWidget")) {
@@ -177,7 +195,8 @@ const views = {
     document.body.append(widget);
   },
   insertOpenCloseBtn: function () {
-    const openClose = this.createBtn(helper.getHostName("/assets/bot.svg"));
+    const botIcon = controller.getBotIconTheme();
+    const openClose = this.createBtn(helper.getHostName(botIcon.bubbleBotIcon));
     document.body.append(openClose);
   },
   createCloseWidgetBtn() {
