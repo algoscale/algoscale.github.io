@@ -1,6 +1,23 @@
+const api = {
+  async fetchTheme() {
+    try {
+      const data = await fetch(
+        `https://ragify-be.azurewebsites.net/api/v1/widget/${insighto_ai_widget_id}/parameters`
+      ).then((response) => response.json());
+      return data;
+    } catch (error) {
+      return null;
+    }
+  },
+};
 const model = {
   iframeOpen: false,
   host: "https://cdn.insighto.ai",
+  botIcon: {
+    bubbleBotIcon: "/assets/bot.svg",
+    bubbleColor: "#3b81f6",
+    bubbleText : "Hi! I am Insighto.ai, how can I help you?"
+  },
 };
 const helper = {
   getHostName(url) {
@@ -8,10 +25,22 @@ const helper = {
   },
 };
 const controller = {
+  getBotIconTheme() {
+    return model.botIcon;
+  },
+  async setBotThemeColorAndIcon() {
+    const data = await api.fetchTheme();
+    if (data) {
+      model.botIcon.bubbleBotIcon =
+        data?.data.bubble_bot_icon || model.botIcon.bubbleBotIcon;
+      model.botIcon.bubbleColor = data?.data.bubble_color || model.botIcon.bubbleColor;
+      model.botIcon.bubbleText = data?.data.bubble_text || model.botIcon.bubbleText;
+    }
+  },
   toggleIframe: async function () {
     if (model.iframeOpen) {
       views.removeWidget();
-      views.changeIconOfOpenClose(helper.getHostName("/assets/bot.svg"));
+      views.changeIconOfOpenClose(helper.getHostName(model.botIcon.bubbleBotIcon));
       views.hideCloseWidgetBtn();
     } else {
       if (!document.getElementById("chatWidget")) {
@@ -30,6 +59,7 @@ const controller = {
 
 const views = {
   init: async function () {
+    await controller.setBotThemeColorAndIcon();
     this.insertOpenCloseBtn();
     this.insertGreet();
     this.inseretCloseWidgetBtn();
@@ -81,10 +111,11 @@ const views = {
       return img;
     }
     function createMessage() {
+      const botIcon = controller.getBotIconTheme();
       const messageDiv = document.createElement("div");
       messageDiv.className = "greetMe__bannerMsg";
       const para = document.createElement("p");
-      para.innerText = "Hi! I am Insighto.ai, how can I help you?";
+      para.innerText = botIcon.bubbleText;
       messageDiv.append(para);
       return messageDiv;
     }
@@ -126,19 +157,22 @@ const views = {
     if (isSmallScreen) this.showCloseWidgetBtn();
   },
   createBtn: function (src) {
+    const botIcon = controller.getBotIconTheme();
+    const div = document.createElement("div");
     const img = document.createElement("img");
-    img.id = "openCloseWidget";
-    img.width = 40;
-    img.height = 40;
+    div.style.backgroundColor = botIcon.bubbleColor;
+    img.id = "floatingIconBottom";
+    div.id = "openCloseWidget";
+    img.width = 42;
+    img.height = 42;
     img.src = src;
-    img.onclick = controller.toggleIframe;
-    return img;
+    div.append(img);
+    div.onclick = controller.toggleIframe;
+    return div;
   },
   insertIframeWidget: function () {
     const widget = this.createIframeWidget(
-      helper.getHostName(
-        `/bot-iframe.html?widgetId=${insighto_ai_widget_id}`
-      )
+      helper.getHostName(`/bot-iframe.html?widgetId=${insighto_ai_widget_id}`)
     );
     document.body.append(widget);
   },
@@ -170,7 +204,7 @@ const views = {
     closeBtn.style.display = "none";
   },
   changeIconOfOpenClose: function (src) {
-    const img = document.getElementById("openCloseWidget");
+    const img = document.getElementById("floatingIconBottom");
     img.src = src;
   },
 };
