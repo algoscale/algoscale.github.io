@@ -163,8 +163,8 @@ const views = {
     div.style.backgroundColor = botIcon.bubbleColor;
     img.id = "floatingIconBottom";
     div.id = "openCloseWidget";
-    img.width = 42;
-    img.height = 42;
+    img.width = 35;
+    img.height = 35;
     img.src = src;
     div.append(img);
     div.onclick = controller.toggleIframe;
