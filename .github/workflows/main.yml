@@ -22,7 +22,7 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-           az cdn endpoint purge --content-paths  "/*" --profile-name "insightoai-cdn" --name "insightoai-static-hfbmfpcxejcchway.z03.azurefd.net" --resource-group "sales-automation_group"
+           az cdn endpoint purge --content-paths  "/*" --profile-name "insightoai-cdn" --name "insightoai-static" --resource-group "sales-automation_group"
 
   # Azure logout
     - name: logout
