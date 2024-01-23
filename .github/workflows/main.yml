@@ -17,7 +17,7 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-            az storage blob upload-batch --account-name ragifydatasourcefiles --auth-mode key -d 'static' -s .
+            az storage blob upload-batch --account-name ragifydatasourcefiles --overwrite --auth-mode key -d 'static' -s . 
     - name: Purge CDN endpoint
       uses: azure/CLI@v1
       with:
