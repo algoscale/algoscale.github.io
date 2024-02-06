@@ -14,9 +14,9 @@ const model = {
   iframeOpen: false,
   host: "https://cdn.insighto.ai",
   botIcon: {
-    bubbleBotIcon: "/assets/bot.svg",
+    bubbleBotIcon: "https://cdn.insighto.ai/assets/bot.svg",
     bubbleColor: "#3b81f6",
-    bubbleText: "Hi! I am Insighto.ai, how can I help you?",
+    bubbleText: "Hi! I am Insighto.ai, how can I help you? ",
   },
 };
 const helper = {
@@ -42,9 +42,7 @@ const controller = {
   toggleIframe: async function () {
     if (model.iframeOpen) {
       views.removeWidget();
-      views.changeIconOfOpenClose(
-        helper.getHostName(model.botIcon.bubbleBotIcon)
-      );
+      views.changeIconOfOpenClose(model.botIcon.bubbleBotIcon);
       views.hideCloseWidgetBtn();
     } else {
       if (!document.getElementById("chatWidget")) {
@@ -175,14 +173,15 @@ const views = {
     return div;
   },
   insertIframeWidget: function () {
-    const widget = this.createIframeWidget(
-      helper.getHostName(`/bot-iframe.html?widgetId=${insighto_ai_widget_id}`)
+    const src = helper.getHostName(
+      `/bot-iframe.html?widgetId=${insighto_ai_widget_id}`
     );
+    const widget = this.createIframeWidget(src);
     document.body.append(widget);
   },
   insertOpenCloseBtn: function () {
     const botIcon = controller.getBotIconTheme();
-    const openClose = this.createBtn(helper.getHostName(botIcon.bubbleBotIcon));
+    const openClose = this.createBtn(botIcon.bubbleBotIcon);
     document.body.append(openClose);
   },
   createCloseWidgetBtn() {
