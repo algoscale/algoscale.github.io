@@ -17,6 +17,22 @@ const model = {
     bubbleBotIcon: "https://cdn.insighto.ai/assets/bot.svg",
     bubbleColor: "#3b81f6",
     bubbleText: "Hi! I am Insighto.ai, how can I help you? ",
+    displayName: "Insighto.ai",
+    introMessage: "How can I help you ?",
+    userOpeningMessages: [
+      "Book a Demo",
+      "Is Insighto.ai multilingual ?",
+      "Pricing",
+      "Can I train a bot ?",
+      "Can I connect to live agent ?",
+    ],
+    headerColor: "var(--primary-color)",
+    userMessageColor: "var(--primary-color)",
+    botMessageColor: "#f1f1f0",
+    botIconColor: "",
+    removeBranding: false,
+    conversationBotIcon: "/bot.png",
+    iceBreakColor: "var(--primary-color)",
   },
 };
 const helper = {
@@ -37,6 +53,16 @@ const controller = {
         data?.data.bubble_color || model.botIcon.bubbleColor;
       model.botIcon.bubbleText =
         data?.data.bubble_text || model.botIcon.bubbleText;
+      model.botIcon.displayName = data?.data.display_name || model.botIcon.displayName;
+      model.botIcon.introMessage = data?.data.intro_message || model.botIcon.introMessage;
+      model.botIcon.userOpeningMessages = data?.data.user_opening_messages || model.botIcon.userOpeningMessages;
+      model.botIcon.headerColor = data?.data.header_color || model.botIcon.headerColor;
+      model.botIcon.userMessageColor = data?.data.user_message_color || model.botIcon.userMessageColor;
+      model.botIcon.botMessageColor = data?.data.bot_message_color || model.botIcon.botMessageColor;
+      model.botIcon.botIconColor = data?.data.bot_icon_color || model.botIcon.botIconColor;
+      model.botIcon.removeBranding = data?.data.remove_branding || model.botIcon.removeBranding;
+      model.botIcon.conversationBotIcon = data?.data.conversation_bot_icon || model.botIcon.conversationBotIcon;
+      model.botIcon.iceBreakColor = data?.data.ice_break_color || model.botIcon.iceBreakColor;
     }
   },
   toggleIframe: async function () {
@@ -56,6 +82,11 @@ const controller = {
       views.displayIframe();
     }
     model.iframeOpen = !model.iframeOpen;
+  },
+  getThemeInBase64(){
+    const botIcon = this.getBotIconTheme()
+    const theme = btoa(JSON.stringify(botIcon));
+    return theme;
   },
 };
 
@@ -173,12 +204,14 @@ const views = {
     return div;
   },
   insertIframeWidget: function () {
+    const theme = controller.getThemeInBase64();
     const src = helper.getHostName(
-      `/bot-iframe.html?widgetId=${insighto_ai_widget_id}`
+      `/bot-iframe.html?widgetId=${insighto_ai_widget_id}&theme=${theme}`
     );
     const widget = this.createIframeWidget(src);
     document.body.append(widget);
   },
+  
   insertOpenCloseBtn: function () {
     const botIcon = controller.getBotIconTheme();
     const openClose = this.createBtn(botIcon.bubbleBotIcon);
