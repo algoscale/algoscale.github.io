@@ -34,6 +34,7 @@ const model = {
     botIconColor: "",
     removeBranding: false,
     conversationBotIcon: "/bot.png",
+    headerTextColor : "#ffffff",
     iceBreakColor: "var(--primary-color)",
   },
 };
@@ -67,6 +68,7 @@ const controller = {
       model.botIcon.iceBreakColor = data?.data.ice_break_color || model.botIcon.iceBreakColor;
       model.botIcon.userTextMessageColor = data?.data.user_text_message_color || model.botIcon.userTextMessageColor
       model.botIcon.botTextMessageColor = data?.data.bot_text_message_color || model.botIcon.botTextMessageColor
+      model.botIcon.headerTextColor = data?.data.header_text_color || model.botIcon.headerTextColor
     }
   },
   toggleIframe: async function () {
