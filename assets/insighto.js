@@ -19,7 +19,7 @@ const model = {
     bubbleText: "Hi! I am Insighto.ai, how can I help you? ",
     displayName: "Insighto.ai",
     introMessage: "How can I help you ?",
-    userTextMessageColor : "#fffffff",
+    userTextMessageColor : "#ffffff",
     botTextMessageColor : "#000000",
     userOpeningMessages: [
       "Book a Demo",
