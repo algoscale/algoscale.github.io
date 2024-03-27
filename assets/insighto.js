@@ -12,13 +12,15 @@ const api = {
 };
 const model = {
   iframeOpen: false,
-  host: "https://cdn.insighto.ai",
+  host: "",
   botIcon: {
     bubbleBotIcon: "https://cdn.insighto.ai/assets/bot.svg",
     bubbleColor: "#3b81f6",
     bubbleText: "Hi! I am Insighto.ai, how can I help you? ",
     displayName: "Insighto.ai",
     introMessage: "How can I help you ?",
+    userTextMessageColor : "#fffffff",
+    botTextMessageColor : "#000000",
     userOpeningMessages: [
       "Book a Demo",
       "Is Insighto.ai multilingual ?",
@@ -63,6 +65,8 @@ const controller = {
       model.botIcon.removeBranding = data?.data.remove_branding || model.botIcon.removeBranding;
       model.botIcon.conversationBotIcon = data?.data.conversation_bot_icon || model.botIcon.conversationBotIcon;
       model.botIcon.iceBreakColor = data?.data.ice_break_color || model.botIcon.iceBreakColor;
+      model.botIcon.userTextMessageColor = data?.data.user_text_message_color || model.botIcon.userTextMessageColor
+      model.botIcon.botTextMessageColor = data?.data.bot_text_message_color || model.botIcon.botTextMessageColor
     }
   },
   toggleIframe: async function () {
