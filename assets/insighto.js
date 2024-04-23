@@ -37,6 +37,7 @@ const model = {
     headerTextColor: "#ffffff",
     iceBreakColor: "var(--primary-color)",
     showVoice: true,
+    hasHumanAgent: false,
   },
 };
 const helper = {
@@ -88,6 +89,10 @@ const controller = {
         "show_voice" in data?.data
           ? data?.data.show_voice
           : model.botIcon.showVoice;
+      model.botIcon.hasHumanAgent =
+        "has_human_agent" in data?.data
+          ? data?.data.has_human_agent
+          : model.botIcon.hasHumanAgent;
     }
   },
   toggleIframe: async function () {
