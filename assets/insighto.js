@@ -31,7 +31,7 @@ const model = {
     headerColor: "var(--primary-color)",
     userMessageColor: "var(--primary-color)",
     botMessageColor: "#f1f1f0",
-    botIconColor: "",
+    botIconColor: "#3b81f6",
     removeBranding: false,
     conversationBotIcon: "/bot.png",
     headerTextColor: "#ffffff",
