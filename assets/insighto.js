@@ -37,6 +37,7 @@ const model = {
     headerTextColor: "#ffffff",
     iceBreakColor: "var(--primary-color)",
     showVoice: true,
+    actionButtons: [],
     hasHumanAgent: false,
   },
 };
@@ -93,6 +94,8 @@ const controller = {
         "has_human_agent" in data?.data
           ? data?.data.has_human_agent
           : model.botIcon.hasHumanAgent;
+      model.botIcon.actionButtons =
+        data?.data.action_buttons || model.botIcon.actionButtons;
     }
   },
   toggleIframe: async function () {
