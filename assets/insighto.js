@@ -39,6 +39,7 @@ const model = {
     showVoice: true,
     actionButtons: [],
     hasHumanAgent: false,
+    actionButtonsColor: "var(--primary-color)",
   },
 };
 const helper = {
@@ -96,6 +97,8 @@ const controller = {
           : model.botIcon.hasHumanAgent;
       model.botIcon.actionButtons =
         data?.data.action_buttons || model.botIcon.actionButtons;
+      model.botIcon.actionButtonsColor =
+        data?.data.action_buttons_color || model.botIcon.actionButtonsColor;
     }
   },
   toggleIframe: async function () {
