@@ -58,8 +58,7 @@ const controller = {
         data?.data.bubble_bot_icon || model.botIcon.bubbleBotIcon;
       model.botIcon.bubbleColor =
         data?.data.bubble_color || model.botIcon.bubbleColor;
-      model.botIcon.bubbleText =
-        data?.data.bubble_text || model.botIcon.bubbleText;
+      model.botIcon.bubbleText = data?.data.bubble_text || "";
       model.botIcon.displayName =
         data?.data.display_name || model.botIcon.displayName;
       model.botIcon.introMessage =
@@ -189,12 +188,15 @@ const views = {
       return messageDiv;
     }
     const greetDiv = document.createElement("div");
-    greetDiv.id = "greetMe";
-    greetDiv.className = "greetMe__banner";
-    const img = createCloseIcon();
-    const messageDiv = createMessage();
-    greetDiv.append(img);
-    greetDiv.append(messageDiv);
+    const botIcon = controller.getBotIconTheme();
+    if (botIcon.bubbleText) {
+      greetDiv.id = "greetMe";
+      greetDiv.className = "greetMe__banner";
+      const img = createCloseIcon();
+      const messageDiv = createMessage();
+      greetDiv.append(img);
+      greetDiv.append(messageDiv);
+    }
     return greetDiv;
   },
   removeGreetMessage: function () {
