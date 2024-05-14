@@ -261,7 +261,12 @@ const views = {
     img.src = helper.getHostName("/assets/close-small.svg");
     img.width = 30;
     img.height = 30;
-    img.onclick = controller.toggleIframe;
+    img.onclick = () => {
+      views.removeWidget();
+      views.changeIconOfOpenClose(model.botIcon.bubbleBotIcon);
+      views.hideCloseWidgetBtn();
+      model.iframeOpen = !model.iframeOpen;
+    };
     return img;
   },
   inseretCloseWidgetBtn() {
