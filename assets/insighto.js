@@ -120,7 +120,7 @@ const controller = {
   },
   getThemeInBase64() {
     const botIcon = this.getBotIconTheme();
-    const theme = btoa(JSON.stringify(botIcon));
+    const theme = btoa(unescape(encodeURIComponent(JSON.stringify(botIcon))));
     return theme;
   },
 };
