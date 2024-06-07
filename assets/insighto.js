@@ -40,6 +40,10 @@ const model = {
     actionButtons: [],
     hasHumanAgent: false,
     actionButtonsColor: "var(--primary-color)",
+    styleParams: {
+      autoCloseBubbleEverytime: true,
+      autoOpenWidget: false,
+    },
   },
 };
 const helper = {
@@ -53,6 +57,7 @@ const controller = {
   },
   async setBotThemeColorAndIcon() {
     const data = await api.fetchTheme();
+    const { style_params = {} } = data?.data;
     if (data) {
       model.botIcon.bubbleBotIcon =
         data?.data.bubble_bot_icon || model.botIcon.bubbleBotIcon;
@@ -98,25 +103,42 @@ const controller = {
         data?.data.action_buttons || model.botIcon.actionButtons;
       model.botIcon.actionButtonsColor =
         data?.data.action_buttons_color || model.botIcon.actionButtonsColor;
+      model.botIcon.styleParams.autoCloseBubbleEverytime =
+        "auto_close_bubble_everytime" in style_params
+          ? style_params.auto_close_bubble_everytime
+          : model.botIcon.styleParams.autoCloseBubbleEverytime;
+      model.botIcon.styleParams.autoOpenWidget =
+        "auto_open_widget" in style_params
+          ? style_params.auto_open_widget
+          : model.botIcon.styleParams.autoOpenWidget;
     }
   },
   toggleIframe: async function () {
     if (model.iframeOpen) {
-      views.removeWidget();
-      views.changeIconOfOpenClose(model.botIcon.bubbleBotIcon);
-      views.hideCloseWidgetBtn();
+      controller.closeWidget();
+      model.iframeOpen = false;
     } else {
-      if (!document.getElementById("chatWidget")) {
-        views.insertIframeWidget();
-      }
-      if (document.getElementById("greetMe")) {
-        views.initateAnimationForGreetRemove(200);
-        views.initiateRemove(500);
-      }
-      views.changeIconOfOpenClose(helper.getHostName("/assets/down.svg"));
-      views.displayIframe();
+      controller.openWidget();
+      model.iframeOpen = true;
     }
-    model.iframeOpen = !model.iframeOpen;
+  },
+  closeWidget: function () {
+    views.removeWidget();
+    views.changeIconOfOpenClose(model.botIcon.bubbleBotIcon);
+    views.hideCloseWidgetBtn();
+    model.iframeOpen = false;
+  },
+  openWidget: function name() {
+    if (!document.getElementById("chatWidget")) {
+      views.insertIframeWidget();
+    }
+    if (document.getElementById("greetMe")) {
+      views.initateAnimationForGreetRemove(200);
+      views.initiateRemove(500);
+    }
+    views.changeIconOfOpenClose(helper.getHostName("/assets/down.svg"));
+    views.displayIframe();
+    model.iframeOpen = true;
   },
   getThemeInBase64() {
     const botIcon = this.getBotIconTheme();
@@ -131,11 +153,16 @@ const views = {
     this.insertOpenCloseBtn();
     this.insertGreet();
     this.inseretCloseWidgetBtn();
-    if (sessionStorage.getItem("greeted")) {
+    const { styleParams } = controller.getBotIconTheme();
+    if (
+      styleParams.autoCloseBubbleEverytime &&
+      sessionStorage.getItem("greeted")
+    ) {
       this.removeGreetMessage();
       return;
     }
-    this.showGreetForOneSession();
+    if (styleParams.autoCloseBubbleEverytime) this.showGreetForOneSession();
+    if (styleParams.autoOpenWidget) controller.openWidget();
   },
   showGreetForOneSession() {
     sessionStorage.setItem("greeted", 1);
@@ -262,10 +289,7 @@ const views = {
     img.width = 30;
     img.height = 30;
     img.onclick = () => {
-      views.removeWidget();
-      views.changeIconOfOpenClose(model.botIcon.bubbleBotIcon);
-      views.hideCloseWidgetBtn();
-      model.iframeOpen = !model.iframeOpen;
+      controller.closeWidget();
     };
     return img;
   },
