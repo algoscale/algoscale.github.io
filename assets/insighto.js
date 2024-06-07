@@ -103,13 +103,14 @@ const controller = {
         data?.data.action_buttons || model.botIcon.actionButtons;
       model.botIcon.actionButtonsColor =
         data?.data.action_buttons_color || model.botIcon.actionButtonsColor;
+      const styleParameters = style_params || {};
       model.botIcon.styleParams.autoCloseBubbleEverytime =
-        "auto_close_bubble_everytime" in style_params
-          ? style_params.auto_close_bubble_everytime
+        "auto_close_bubble_everytime" in styleParameters
+          ? styleParameters.auto_close_bubble_everytime
           : model.botIcon.styleParams.autoCloseBubbleEverytime;
       model.botIcon.styleParams.autoOpenWidget =
-        "auto_open_widget" in style_params
-          ? style_params.auto_open_widget
+        "auto_open_widget" in styleParameters
+          ? styleParameters.auto_open_widget
           : model.botIcon.styleParams.autoOpenWidget;
     }
   },
