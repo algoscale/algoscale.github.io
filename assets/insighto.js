@@ -43,6 +43,7 @@ const model = {
     styleParams: {
       autoCloseBubbleEverytime: true,
       autoOpenWidget: false,
+      hideIceBreakerForSession: false,
     },
   },
 };
@@ -112,6 +113,10 @@ const controller = {
         "auto_open_widget" in styleParameters
           ? styleParameters.auto_open_widget
           : model.botIcon.styleParams.autoOpenWidget;
+      model.botIcon.styleParams.hideIceBreakerForSession =
+        "hide_ice_breaker_for_session" in styleParameters
+          ? styleParameters.hide_ice_breaker_for_session
+          : model.botIcon.styleParams.hideIceBreakerForSession;
     }
   },
   toggleIframe: async function () {
@@ -143,6 +148,7 @@ const controller = {
   },
   getThemeInBase64() {
     const botIcon = this.getBotIconTheme();
+    console.log(botIcon);
     const theme = btoa(unescape(encodeURIComponent(JSON.stringify(botIcon))));
     return theme;
   },
