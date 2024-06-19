@@ -148,7 +148,6 @@ const controller = {
   },
   getThemeInBase64() {
     const botIcon = this.getBotIconTheme();
-    console.log(botIcon);
     const theme = btoa(unescape(encodeURIComponent(JSON.stringify(botIcon))));
     return theme;
   },
