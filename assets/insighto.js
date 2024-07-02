@@ -265,6 +265,7 @@ const views = {
     const div = document.createElement("div");
     const img = document.createElement("img");
     div.style.backgroundColor = botIcon.botIconColor;
+    img.alt = "Floating icon"
     img.id = "floatingIconBottom";
     div.id = "openCloseWidget";
     img.width = 34;
@@ -292,6 +293,7 @@ const views = {
     const img = document.createElement("img");
     img.id = "closeWidgetIcon";
     img.src = helper.getHostName("/assets/close-small.svg");
+    img.alt = "Close icon"
     img.width = 30;
     img.height = 30;
     img.onclick = () => {
