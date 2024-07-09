@@ -44,6 +44,7 @@ const model = {
       autoCloseBubbleEverytime: true,
       autoOpenWidget: false,
       hideIceBreakerForSession: false,
+      showResetButton: false,
     },
   },
 };
@@ -117,6 +118,10 @@ const controller = {
         "hide_ice_breaker_for_session" in styleParameters
           ? styleParameters.hide_ice_breaker_for_session
           : model.botIcon.styleParams.hideIceBreakerForSession;
+      model.botIcon.styleParams.showResetButton =
+        "show_reset_button" in styleParameters
+          ? styleParameters.show_reset_button
+          : model.botIcon.styleParams.showResetButton;
     }
   },
   toggleIframe: async function () {
@@ -265,7 +270,7 @@ const views = {
     const div = document.createElement("div");
     const img = document.createElement("img");
     div.style.backgroundColor = botIcon.botIconColor;
-    img.alt = "Floating icon"
+    img.alt = "Floating icon";
     img.id = "floatingIconBottom";
     div.id = "openCloseWidget";
     img.width = 34;
@@ -293,7 +298,7 @@ const views = {
     const img = document.createElement("img");
     img.id = "closeWidgetIcon";
     img.src = helper.getHostName("/assets/close-small.svg");
-    img.alt = "Close icon"
+    img.alt = "Close icon";
     img.width = 30;
     img.height = 30;
     img.onclick = () => {
