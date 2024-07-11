@@ -17,7 +17,7 @@ jobs:
     - run: npm i -g uglify
     - run: npm i -g clean-css-cli
     - run: npx cleancss -o ./assets/insighto.min.css ./assets/insighto.css 
-    - run: npx uglifyjs -o ./assets/insighto.min.js ./assets/insighto.js
+    - run: uglifyjs -o ./assets/insighto.min.js ./assets/insighto.js
    
     - name: Upload to blob storage
       uses: azure/CLI@v1
