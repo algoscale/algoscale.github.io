@@ -16,7 +16,7 @@ jobs:
           node-version: 18
     - run: npm install -g uglify-js
     - run: npm i -g clean-css-cli
-    - run: npx cleancss -o ./assets/insighto.min.css ./assets/insighto.css 
+    - run: cleancss -o ./assets/insighto.min.css ./assets/insighto.css 
     - run: uglifyjs -o ./assets/insighto.min.js ./assets/insighto.js
    
     - name: Upload to blob storage
