@@ -9,10 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - uses: actions/setup-node@v4
     - uses: azure/login@v1
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
+      with:
+          node-version: 18
+    - run: npm i -g uglify
+    - run: npm i -g clean-css-cli
+    - run: cleancss -o ./assets/insighto.min.css ./assets/insighto.css && uglifyjs -o ./assets/insighto.min.js ./assets/insighto.js
+   
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
