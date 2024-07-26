@@ -45,6 +45,7 @@ const model = {
       autoOpenWidget: false,
       hideIceBreakerForSession: false,
       showResetButton: false,
+      agencyName : "Insighto.AI"
     },
   },
 };
@@ -122,6 +123,8 @@ const controller = {
         "show_reset_button" in styleParameters
           ? styleParameters.show_reset_button
           : model.botIcon.styleParams.showResetButton;
+      model.botIcon.styleParams.agencyName =
+        styleParameters.agency_name || model.botIcon.styleParams.agencyName;
     }
   },
   toggleIframe: async function () {
