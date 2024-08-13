@@ -45,7 +45,7 @@ const model = {
       autoOpenWidget: false,
       hideIceBreakerForSession: false,
       showResetButton: false,
-      agencyName : "Insighto.AI"
+      agencyName: "Insighto.AI",
     },
   },
 };
@@ -67,8 +67,9 @@ const controller = {
       model.botIcon.bubbleColor =
         data?.data.bubble_color || model.botIcon.bubbleColor;
       model.botIcon.bubbleText = data?.data.bubble_text || "";
-      model.botIcon.displayName =
-        data?.data.display_name || model.botIcon.displayName;
+      const title = data?.data?.display_name || model.botIcon.displayName;
+      model.botIcon.displayName = title;
+      document.title = title;
       model.botIcon.introMessage =
         data?.data.intro_message || model.botIcon.introMessage;
       model.botIcon.userOpeningMessages =
