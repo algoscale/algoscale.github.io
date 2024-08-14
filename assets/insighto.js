@@ -69,7 +69,6 @@ const controller = {
       model.botIcon.bubbleText = data?.data.bubble_text || "";
       const title = data?.data?.display_name || model.botIcon.displayName;
       model.botIcon.displayName = title;
-      document.title = title;
       model.botIcon.introMessage =
         data?.data.intro_message || model.botIcon.introMessage;
       model.botIcon.userOpeningMessages =
