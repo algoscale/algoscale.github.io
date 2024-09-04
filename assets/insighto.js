@@ -140,6 +140,7 @@ const controller = {
     views.removeWidget();
     views.changeIconOfOpenClose(model.botIcon.bubbleBotIcon);
     views.hideCloseWidgetBtn();
+    sessionStorage.setItem("alreadyOpenedOnce", true);
     model.iframeOpen = false;
   },
   openWidget: function name() {
@@ -176,7 +177,11 @@ const views = {
       return;
     }
     if (styleParams.autoCloseBubbleEverytime) this.showGreetForOneSession();
-    if (styleParams.autoOpenWidget) controller.openWidget();
+    if (
+      styleParams.autoOpenWidget &&
+      !sessionStorage.getItem("alreadyOpenedOnce")
+    )
+      controller.openWidget();
   },
   showGreetForOneSession() {
     sessionStorage.setItem("greeted", 1);
