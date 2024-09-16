@@ -12,7 +12,7 @@ const api = {
 };
 const model = {
   iframeOpen: false,
-  host: "https://cdn.insighto.ai",
+  host: "",
   botIcon: {
     bubbleBotIcon: "https://cdn.insighto.ai/assets/bot.svg",
     bubbleColor: "#3b81f6",
@@ -46,6 +46,8 @@ const model = {
       hideIceBreakerForSession: false,
       showResetButton: false,
       agencyName: "Insighto.AI",
+      placeholder: "Type or speak using mic",
+      agencyDomain: "https://insighto.ai",
     },
   },
 };
@@ -125,6 +127,11 @@ const controller = {
           : model.botIcon.styleParams.showResetButton;
       model.botIcon.styleParams.agencyName =
         styleParameters.agency_name || model.botIcon.styleParams.agencyName;
+      model.botIcon.styleParams.placeholder =
+        styleParameters.placeholder || model.botIcon.styleParams.placeholder;
+      model.botIcon.styleParams.agencyDomain =
+        styleParameters.agency_app_domain ||
+        model.botIcon.styleParams.agencyDomain;
     }
   },
   toggleIframe: async function () {
