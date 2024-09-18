@@ -2,6 +2,7 @@ const loadedWidgetId =
   typeof insighto_ai_widget_id !== "undefined"
     ? insighto_ai_widget_id
     : widget_id;
+    
 const api = {
   async fetchTheme() {
     try {
