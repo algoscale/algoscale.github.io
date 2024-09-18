@@ -1,8 +1,12 @@
+const loadedWidgetId =
+  typeof insighto_ai_widget_id !== "undefined"
+    ? insighto_ai_widget_id
+    : widget_id;
 const api = {
   async fetchTheme() {
     try {
       const data = await fetch(
-        `https://ragify-be.azurewebsites.net/api/v1/widget/${insighto_ai_widget_id}/parameters`
+        `https://ragify-be.azurewebsites.net/api/v1/widget/${loadedWidgetId}/parameters`
       ).then((response) => response.json());
       return data;
     } catch (error) {
@@ -298,7 +302,7 @@ const views = {
   insertIframeWidget: function () {
     const theme = controller.getThemeInBase64();
     const src = helper.getHostName(
-      `/bot-iframe.html?widgetId=${insighto_ai_widget_id}&theme=${theme}`
+      `/bot-iframe.html?widgetId=${loadedWidgetId}&theme=${theme}`
     );
     const widget = this.createIframeWidget(src);
     document.body.append(widget);

@@ -1,0 +1,1 @@
+/home/atul/Documents/development/algoscale.github.io/assets/insighto.js
