@@ -2,7 +2,7 @@ const loadedWidgetId =
   typeof insighto_ai_widget_id !== "undefined"
     ? insighto_ai_widget_id
     : widget_id;
-    
+
 const api = {
   async fetchTheme() {
     try {
@@ -130,13 +130,9 @@ const controller = {
         "show_reset_button" in styleParameters
           ? styleParameters.show_reset_button
           : model.botIcon.styleParams.showResetButton;
-      model.botIcon.styleParams.agencyName =
-        styleParameters.agency_name || model.botIcon.styleParams.agencyName;
       model.botIcon.styleParams.placeholder =
         styleParameters.placeholder || model.botIcon.styleParams.placeholder;
-      model.botIcon.styleParams.agencyDomain =
-        styleParameters.agency_app_domain ||
-        model.botIcon.styleParams.agencyDomain;
+      model.botIcon.agency = data?.data?.agency;
     }
   },
   toggleIframe: async function () {
