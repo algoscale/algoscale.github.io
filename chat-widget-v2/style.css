@@ -1,0 +1,13 @@
+.chat__widget {
+  position: fixed;
+  right: 4px;
+  bottom: 4px;
+  width: 80px;
+  height: 80px;
+  z-index: 2147483647;
+  width: 100%;
+}
+.chat__widget > iframe {
+  width: 100%;
+  height: 100%;
+}
