@@ -23,7 +23,7 @@ class ChatWidget {
       (params, [key, value]) => params + `${key}=${value}&`,
       ""
     );
-    return `index.html?${searchParams}`;
+    return `/index.html?${searchParams}`;
   }
 }
 
