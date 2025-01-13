@@ -24,8 +24,8 @@ class ChatWidget {
       ""
     );
     const hostname =
-      this.props?.appHostname || `https://cdn.insighto.ai/chat-widget-v2`;
-    return `${hostname}/index.html?${searchParams}`;
+      this.props?.appHostname || `https://cdn.insighto.ai`;
+    return `${hostname}/chat-widget-v2/index.html?${searchParams}`;
   }
 }
 
