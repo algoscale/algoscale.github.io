@@ -15,6 +15,7 @@ class ChatWidget {
     chatWidgetIframeRagify.frameBorder = 0;
     const src = this.createSrc();
     chatWidgetIframeRagify.src = src;
+    chatWidgetIframeRagify.allow = "microphone";
     chatWidgetIframeRagify.style.borderRadius = "16px";
     return chatWidgetIframeRagify;
   }
