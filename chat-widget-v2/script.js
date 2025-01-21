@@ -35,7 +35,6 @@ const createPx = (pixel) => `${pixel}px`;
 window.onmessage = (e) => {
   if (!e?.data?.event) return;
   const outerDiv = document.getElementById("chatWidgetRagify");
-  console.log(e.data);
   const events = {
     toggleVisiblityOfWidget: () => {
       const width = e.data?.data ? 415 : 80;
