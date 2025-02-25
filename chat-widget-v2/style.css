@@ -5,7 +5,6 @@
   width: 80px;
   height: 80px;
   z-index: 2147483647;
-  width: 100%;
 }
 .chat__widget > iframe {
   width: 100%;

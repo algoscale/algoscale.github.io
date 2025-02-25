@@ -38,7 +38,7 @@ window.onmessage = (e) => {
   const events = {
     toggleVisiblityOfWidget: () => {
       const width = e.data?.data ? 415 : 80;
-      outerDiv.style.maxWidth = createPx(width);
+      outerDiv.style.width = createPx(width);
       const height = e.data?.data ? 600 : 80;
       outerDiv.style.height = createPx(height);
       e.source.postMessage(e.data, "*");
