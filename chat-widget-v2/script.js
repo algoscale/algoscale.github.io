@@ -24,23 +24,17 @@ class ChatWidget {
       (params, [key, value]) => params + `${key}=${value}&`,
       ""
     );
-    const hostname =
-      this.props?.appHostname || `https://cdn.insighto.ai`;
+    const hostname = this.props?.appHostname || `https://cdn.insighto.ai`;
     return `${hostname}/chat-widget-v2/index.html?${searchParams}`;
   }
 }
-
-const createPx = (pixel) => `${pixel}px`;
 
 window.onmessage = (e) => {
   if (!e?.data?.event) return;
   const outerDiv = document.getElementById("chatWidgetRagify");
   const events = {
     toggleVisiblityOfWidget: () => {
-      const width = e.data?.data ? 415 : 80;
-      outerDiv.style.width = createPx(width);
-      const height = e.data?.data ? 600 : 80;
-      outerDiv.style.height = createPx(height);
+      outerDiv.classList.toggle("chat__widgetOpen", e?.data?.data);
       e.source.postMessage(e.data, "*");
     },
   };
