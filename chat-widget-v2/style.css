@@ -7,8 +7,9 @@
   z-index: 2147483647;
 }
 .chat__widgetOpen{
-  width: 400px;
+  max-width: 400px;
   height: 600px;
+  width: 100%;
 }
 .chat__widget > iframe {
   width: 100%;
