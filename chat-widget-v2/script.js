@@ -1,6 +1,7 @@
 class ChatWidget {
   constructor(props) {
     this.props = props;
+    this._isOpen = false;
   }
   init() {
     const chatWidgetRagify = document.createElement("div");
@@ -12,6 +13,7 @@ class ChatWidget {
   }
   createChatWidgetIframe() {
     const chatWidgetIframeRagify = document.createElement("iframe");
+    chatWidgetIframeRagify.id = "chatWidgetIframeRagify";
     chatWidgetIframeRagify.frameBorder = 0;
     const src = this.createSrc();
     chatWidgetIframeRagify.src = src;
@@ -27,17 +29,34 @@ class ChatWidget {
     const hostname = this.props?.appHostname || `https://cdn.insighto.ai`;
     return `${hostname}/chat-widget-v2/index.html?${searchParams}`;
   }
+  static getEventHandler(e) {
+    const outerDiv = document.getElementById("chatWidgetRagify");
+    const events = {
+      toggleVisiblityOfWidget: () => {
+        outerDiv.classList.toggle("chat__widgetOpen", e?.data?.data);
+        e.source.postMessage(e.data, "*");
+      },
+    };
+    const triggerEvent = events[e?.data?.event];
+    return triggerEvent;
+  }
+  toggle() {
+    const response = {
+      data: !this._isOpen,
+      event: "toggleVisiblityOfWidget",
+    };
+    document
+      .getElementById("chatWidgetIframeRagify")
+      .contentWindow.postMessage(response, "*");
+    const outerDiv = document.getElementById("chatWidgetRagify");
+
+    outerDiv.classList.toggle("chat__widgetOpen", response.data);
+    e.source.postMessage(response, "*");
+  }
 }
 
 window.onmessage = (e) => {
   if (!e?.data?.event) return;
-  const outerDiv = document.getElementById("chatWidgetRagify");
-  const events = {
-    toggleVisiblityOfWidget: () => {
-      outerDiv.classList.toggle("chat__widgetOpen", e?.data?.data);
-      e.source.postMessage(e.data, "*");
-    },
-  };
-  const triggerEvent = events[e.data.event];
+  const triggerEvent = ChatWidget.getEventHandler(e);
   triggerEvent();
 };
