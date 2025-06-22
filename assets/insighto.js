@@ -7,7 +7,7 @@ const api = {
   async fetchTheme() {
     try {
       const data = await fetch(
-        `https://ragify-be-con-fbbxcrhuhxdmbbbf.eastus-01.azurewebsites.net/api/v1/widget/${loadedWidgetId}/parameters`
+        `https://ragify-be.azurewebsites.net/api/v1/widget/${loadedWidgetId}/parameters`
       ).then((response) => response.json());
       return data;
     } catch (error) {
